@@ -5,7 +5,8 @@ You can use the [editor on GitHub](https://github.com/tuananh97/tuananh97.github
 Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files. <br>
 sudo chmod  o+w /var/www/html <br>
 https://tech.bizflycloud.vn/cai-dat-lamp-stack-tren-ubuntu-16-04-794.htm <br>
-https://nguyenhuuhoang.com/huong-dan-trien-khai-server-lamp-tren-ubuntu-16-04/
+https://nguyenhuuhoang.com/huong-dan-trien-khai-server-lamp-tren-ubuntu-16-04/ <br>
+https://codethue.net/a/lam-the-nao-de-cai-dat-laravel-tren-ubuntu-1804
 ### Markdown
 
 Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
