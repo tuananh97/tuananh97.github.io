@@ -2,8 +2,8 @@
 
 You can use the [editor on GitHub](https://github.com/tuananh97/tuananh97.github.io/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-https://tech.bizflycloud.vn/cai-dat-lamp-stack-tren-ubuntu-16-04-794.htm
+Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files. <br>
+https://tech.bizflycloud.vn/cai-dat-lamp-stack-tren-ubuntu-16-04-794.htm <br>
 https://nguyenhuuhoang.com/huong-dan-trien-khai-server-lamp-tren-ubuntu-16-04/
 ### Markdown
 
