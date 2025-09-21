@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Báo Cáo Phân Tích Dinh Dưỡng</title>
+
+    <script src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/recharts/umd/Recharts.min.js"></script>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -68,11 +72,8 @@
 </head>
 <body class="bg-gray-50">
     <div id="app" class="max-w-7xl mx-auto p-6">
-        <!-- Nội dung sẽ được render bằng JavaScript -->
-    </div>
+        </div>
 
-    <script src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
-    <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Raw data from CSV
@@ -127,7 +128,7 @@
                 const fatPercentage = (day.fat / totalCalories) * 100;
                 const carbsPercentage = (day.carbs / totalCalories) * 100;
                 const proteinPercentage = (day.protein / totalCalories) * 100;
-                
+
                 return {
                     ...day,
                     dayNumber: index + 1,
@@ -143,16 +144,16 @@
 
             // Calculate statistics
             const totalDays = processedData.length;
-            
+
             const avgTotalCalories = processedData.reduce((sum, day) => sum + day.totalCalories, 0) / totalDays;
             const avgFatCalories = processedData.reduce((sum, day) => sum + day.fat, 0) / totalDays;
             const avgCarbsCalories = processedData.reduce((sum, day) => sum + day.carbs, 0) / totalDays;
             const avgProteinCalories = processedData.reduce((sum, day) => sum + day.protein, 0) / totalDays;
-            
+
             const avgFatPercentage = processedData.reduce((sum, day) => sum + day.fatPercentage, 0) / totalDays;
             const avgCarbsPercentage = processedData.reduce((sum, day) => sum + day.carbsPercentage, 0) / totalDays;
             const avgProteinPercentage = processedData.reduce((sum, day) => sum + day.proteinPercentage, 0) / totalDays;
-            
+
             const stats = {
                 avgTotalCalories,
                 avgFatCalories,
@@ -234,7 +235,7 @@
                 const isOver = percentage > 110;
                 const isUnder = percentage < 90;
                 const status = isOver ? "over" : isUnder ? "under" : "good";
-                
+
                 const statusColors = {
                     over: "text-red-600 bg-red-50 border-red-200",
                     under: "text-amber-600 bg-amber-50 border-amber-200",
@@ -287,7 +288,6 @@
                         </p>
                     </header>
 
-                    <!-- Executive Summary -->
                     <section class="mb-8">
                         <h2 class="text-2xl font-semibold mb-4 text-gray-800">Tóm Tắt Tổng Quan</h2>
                         <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
@@ -322,7 +322,6 @@
                         </div>
                     </section>
 
-                    <!-- Key Findings -->
                     <section class="mb-8">
                         <h2 class="text-2xl font-semibold mb-4 text-gray-800">Kết Quả Chính</h2>
                         <div class="grid md:grid-cols-2 gap-6">
@@ -345,17 +344,14 @@
                         </div>
                     </section>
 
-                    <!-- Charts Section -->
                     <section class="mb-8">
                         <h2 class="text-2xl font-semibold mb-6 text-gray-800">Biểu Đồ Phân Tích</h2>
-                        
-                        <!-- Daily Calorie Trend -->
+
                         <div class="bg-white p-6 rounded-lg border border-gray-200 mb-6">
                             <h3 class="text-lg font-semibold mb-4">Xu Hướng Calo Hàng Ngày</h3>
                             <div id="lineChart" style="width: 100%; height: 400px;"></div>
                         </div>
 
-                        <!-- Macronutrient Distribution -->
                         <div class="grid md:grid-cols-2 gap-6 mb-6">
                             <div class="bg-white p-6 rounded-lg border border-gray-200">
                                 <h3 class="text-lg font-semibold mb-4">Phân Bố Dinh Dưỡng Trung Bình</h3>
@@ -368,17 +364,15 @@
                             </div>
                         </div>
 
-                        <!-- Daily Breakdown -->
                         <div class="bg-white p-6 rounded-lg border border-gray-200">
                             <h3 class="text-lg font-semibold mb-4">Phân Tích Theo Nhóm Dinh Dưỡng</h3>
                             <div id="barChart" style="width: 100%; height: 400px;"></div>
                         </div>
                     </section>
 
-                    <!-- Detailed Analysis -->
                     <section class="mb-8">
                         <h2 class="text-2xl font-semibold mb-4 text-gray-800">Phân Tích Chi Tiết</h2>
-                        
+
                         <div class="grid lg:grid-cols-2 gap-6">
                             <div class="space-y-4">
                                 <h3 class="text-lg font-semibold">Ngày Có Biến Động Lớn</h3>
@@ -387,7 +381,7 @@
                                     <p class="text-red-700">Ngày ${extremes.lowestCalorie.dayNumber} (${extremes.lowestCalorie.date}): ${extremes.lowestCalorie.totalCalories.toFixed(0)} kcal</p>
                                     <p class="text-sm text-red-600 mt-1">Thấp hơn mục tiêu ${(targets.totalCalories - extremes.lowestCalorie.totalCalories).toFixed(0)} kcal (${((extremes.lowestCalorie.totalCalories / targets.totalCalories - 1) * 100).toFixed(1)}%)</p>
                                 </div>
-                                
+
                                 <div class="bg-green-50 p-4 rounded-lg border border-green-200">
                                     <h4 class="font-medium text-green-800 mb-2">Ngày Calo Cao Nhất</h4>
                                     <p class="text-green-700">Ngày ${extremes.highestCalorie.dayNumber} (${extremes.highestCalorie.date}): ${extremes.highestCalorie.totalCalories.toFixed(0)} kcal</p>
@@ -404,34 +398,34 @@
                                             <span class="text-sm">${stats.avgFatPercentage.toFixed(1)}% / 35%</span>
                                         </div>
                                         <div class="w-full bg-gray-200 rounded-full h-2">
-                                            <div 
-                                                class="bg-red-500 h-2 rounded-full" 
+                                            <div
+                                                class="bg-red-500 h-2 rounded-full"
                                                 style="width: ${Math.min((stats.avgFatPercentage / 35) * 100, 100)}%"
                                             ></div>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="bg-gray-50 p-3 rounded-lg">
                                         <div class="flex justify-between items-center mb-1">
                                             <span class="text-sm font-medium">Carbohydrate</span>
                                             <span class="text-sm">${stats.avgCarbsPercentage.toFixed(1)}% / 45%</span>
                                         </div>
                                         <div class="w-full bg-gray-200 rounded-full h-2">
-                                            <div 
-                                                class="bg-teal-500 h-2 rounded-full" 
+                                            <div
+                                                class="bg-teal-500 h-2 rounded-full"
                                                 style="width: ${Math.min((stats.avgCarbsPercentage / 45) * 100, 100)}%"
                                             ></div>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="bg-gray-50 p-3 rounded-lg">
                                         <div class="flex justify-between items-center mb-1">
                                             <span class="text-sm font-medium">Protein</span>
                                             <span class="text-sm">${stats.avgProteinPercentage.toFixed(1)}% / 20%</span>
                                         </div>
                                         <div class="w-full bg-gray-200 rounded-full h-2">
-                                            <div 
-                                                class="bg-blue-500 h-2 rounded-full" 
+                                            <div
+                                                class="bg-blue-500 h-2 rounded-full"
                                                 style="width: ${Math.min((stats.avgProteinPercentage / 20) * 100, 100)}%"
                                             ></div>
                                         </div>
@@ -441,7 +435,6 @@
                         </div>
                     </section>
 
-                    <!-- Recommendations -->
                     <section class="mb-8">
                         <h2 class="text-2xl font-semibold mb-4 text-gray-800">Khuyến Nghị Điều Chỉnh</h2>
                         <div class="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-lg border border-blue-200">
@@ -467,7 +460,6 @@
                         </div>
                     </section>
 
-                    <!-- Footer -->
                     <footer class="text-center text-gray-500 text-sm pt-6 border-t border-gray-200">
                         <p>Báo cáo được tạo tự động dựa trên dữ liệu dinh dưỡng tháng 8/2025</p>
                         <p>Khuyến nghị cần được xem xét bởi chuyên gia dinh dưỡng</p>
@@ -477,40 +469,35 @@
 
             // Render charts after the DOM is updated
             setTimeout(() => {
-                // Line Chart
-                const lineChart = Recharts.LineChart;
-                const line = Recharts.Line;
-                const xAxis = Recharts.XAxis;
-                const yAxis = Recharts.YAxis;
-                const cartesianGrid = Recharts.CartesianGrid;
-                const tooltip = Recharts.Tooltip;
-                const legend = Recharts.Legend;
-                const responsiveContainer = Recharts.ResponsiveContainer;
+                // Destructure Recharts components
+                const {
+                    LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer,
+                    PieChart, Pie, Cell,
+                    RadarChart, Radar, PolarGrid, PolarAngleAxis, PolarRadiusAxis,
+                    BarChart, Bar
+                } = Recharts;
 
+                // Render Line Chart
                 ReactDOM.render(
-                    React.createElement(responsiveContainer, { width: "100%", height: 400 },
-                        React.createElement(lineChart, { data: chartData },
-                            React.createElement(cartesianGrid, { strokeDasharray: "3 3" }),
-                            React.createElement(xAxis, { dataKey: "day" }),
-                            React.createElement(yAxis),
-                            React.createElement(tooltip, { formatter: (value, name) => [`${value} kcal`, name] }),
-                            React.createElement(legend),
-                            React.createElement(line, { type: "monotone", dataKey: "Tổng Calo", stroke: "#2563eb", strokeWidth: 2, dot: { r: 4 } }),
-                            React.createElement(line, { type: "monotone", dataKey: "Mục tiêu", stroke: "#dc2626", strokeWidth: 2, strokeDasharray: "5 5" })
+                    React.createElement(ResponsiveContainer, { width: "100%", height: 400 },
+                        React.createElement(LineChart, { data: chartData },
+                            React.createElement(CartesianGrid, { strokeDasharray: "3 3" }),
+                            React.createElement(XAxis, { dataKey: "day" }),
+                            React.createElement(YAxis),
+                            React.createElement(Tooltip, { formatter: (value, name) => [`${value} kcal`, name] }),
+                            React.createElement(Legend),
+                            React.createElement(Line, { type: "monotone", dataKey: "Tổng Calo", stroke: "#2563eb", strokeWidth: 2, dot: { r: 4 } }),
+                            React.createElement(Line, { type: "monotone", dataKey: "Mục tiêu", stroke: "#dc2626", strokeWidth: 2, strokeDasharray: "5 5" })
                         )
                     ),
                     document.getElementById('lineChart')
                 );
 
-                // Pie Chart
-                const pieChart = Recharts.PieChart;
-                const pie = Recharts.Pie;
-                const cell = Recharts.Cell;
-
+                // Render Pie Chart
                 ReactDOM.render(
-                    React.createElement(responsiveContainer, { width: "100%", height: 300 },
-                        React.createElement(pieChart,
-                            React.createElement(pie, {
+                    React.createElement(ResponsiveContainer, { width: "100%", height: 300 },
+                        React.createElement(PieChart, null,
+                            React.createElement(Pie, {
                                 data: pieData,
                                 cx: "50%",
                                 cy: "50%",
@@ -519,50 +506,42 @@
                                 dataKey: "value",
                                 label: ({ name, value }) => `${name}: ${value}%`
                             },
-                                pieData.map((entry, index) => React.createElement(cell, { key: `cell-${index}`, fill: entry.color }))
+                                pieData.map((entry, index) => React.createElement(Cell, { key: `cell-${index}`, fill: entry.color }))
                             ),
-                            React.createElement(tooltip)
+                            React.createElement(Tooltip),
+                            React.createElement(Legend)
                         )
                     ),
                     document.getElementById('pieChart')
                 );
 
-                // Radar Chart
-                const radarChart = Recharts.RadarChart;
-                const radar = Recharts.Radar;
-                const polarGrid = Recharts.PolarGrid;
-                const polarAngleAxis = Recharts.PolarAngleAxis;
-                const polarRadiusAxis = Recharts.PolarRadiusAxis;
-
+                // Render Radar Chart
                 ReactDOM.render(
-                    React.createElement(responsiveContainer, { width: "100%", height: 300 },
-                        React.createElement(radarChart, { data: radarData },
-                            React.createElement(polarGrid),
-                            React.createElement(polarAngleAxis, { dataKey: "subject" }),
-                            React.createElement(polarRadiusAxis, { domain: [0, 120], tickCount: 4 }),
-                            React.createElement(radar, { name: "Thực tế", dataKey: "actual", stroke: "#2563eb", fill: "#2563eb", fillOpacity: 0.3 }),
-                            React.createElement(radar, { name: "Mục tiêu", dataKey: "target", stroke: "#dc2626", fill: "#dc2626", fillOpacity: 0.1 }),
-                            React.createElement(legend)
+                    React.createElement(ResponsiveContainer, { width: "100%", height: 300 },
+                        React.createElement(RadarChart, { data: radarData },
+                            React.createElement(PolarGrid),
+                            React.createElement(PolarAngleAxis, { dataKey: "subject" }),
+                            React.createElement(PolarRadiusAxis, { domain: [0, 120], tickCount: 4 }),
+                            React.createElement(Radar, { name: "Thực tế", dataKey: "actual", stroke: "#2563eb", fill: "#2563eb", fillOpacity: 0.3 }),
+                            React.createElement(Radar, { name: "Mục tiêu", dataKey: "target", stroke: "#dc2626", fill: "#dc2626", fillOpacity: 0.1 }),
+                            React.createElement(Legend)
                         )
                     ),
                     document.getElementById('radarChart')
                 );
 
-                // Bar Chart
-                const barChart = Recharts.BarChart;
-                const bar = Recharts.Bar;
-
+                // Render Bar Chart
                 ReactDOM.render(
-                    React.createElement(responsiveContainer, { width: "100%", height: 400 },
-                        React.createElement(barChart, { data: chartData },
-                            React.createElement(cartesianGrid, { strokeDasharray: "3 3" }),
-                            React.createElement(xAxis, { dataKey: "day" }),
-                            React.createElement(yAxis),
-                            React.createElement(tooltip),
-                            React.createElement(legend),
-                            React.createElement(bar, { dataKey: "Chất béo", fill: "#ff6b6b" }),
-                            React.createElement(bar, { dataKey: "Carbohydrate", fill: "#4ecdc4" }),
-                            React.createElement(bar, { dataKey: "Protein", fill: "#45b7d1" })
+                    React.createElement(ResponsiveContainer, { width: "100%", height: 400 },
+                        React.createElement(BarChart, { data: chartData },
+                            React.createElement(CartesianGrid, { strokeDasharray: "3 3" }),
+                            React.createElement(XAxis, { dataKey: "day" }),
+                            React.createElement(YAxis),
+                            React.createElement(Tooltip),
+                            React.createElement(Legend),
+                            React.createElement(Bar, { dataKey: "Chất béo", fill: "#ff6b6b" }),
+                            React.createElement(Bar, { dataKey: "Carbohydrate", fill: "#4ecdc4" }),
+                            React.createElement(Bar, { dataKey: "Protein", fill: "#45b7d1" })
                         )
                     ),
                     document.getElementById('barChart')
